@@ -20,7 +20,7 @@ contract HelloWorldTest is Test {
     }
 
     /*----------Message update----------*/
-    function test_UpdateMessage() public{
+    function test_UpdateMessage() public {
         string memory newMessage = "BCU24D";
         assertEq(helloWorld.message(), INITIAL);
 
@@ -55,6 +55,4 @@ contract HelloWorldTest is Test {
 
         assertEq(helloWorld.getMessage(), newMessage);
     }
-
-
 }

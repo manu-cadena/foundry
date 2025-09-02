@@ -14,12 +14,11 @@ contract CustomErrorsTest is Test {
         vm.prank(owner);
         customErrors = new CustomErrors();
     }
-    
+
     /*----------Deployment----------*/
 
     function test_DeploymentCustomErrors() public view {
         assertEq(customErrors.owner(), owner);
-
     }
 
     /*----------SetNumber functionality----------*/
@@ -30,7 +29,6 @@ contract CustomErrorsTest is Test {
         customErrors.setNumber(validNumber);
 
         assertEq(customErrors.number(), validNumber);
-
     }
 
     function test_RevertWhenNotOwner() public {
@@ -62,6 +60,5 @@ contract CustomErrorsTest is Test {
         customErrors.setNumber(invalidNumber);
 
         assertEq(customErrors.number(), validNumber);
-
     }
 }

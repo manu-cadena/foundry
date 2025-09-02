@@ -5,8 +5,8 @@ import {Test} from "forge-std/Test.sol";
 import {Wallet} from "../src/Wallet.sol";
 
 contract WalletTest is Test {
-    event DepositMade(address indexed accountAddress, uint amount);
-    event WithdrawalMade(address indexed accountAddress, uint amount);
+    event DepositMade(address indexed accountAddress, uint256 amount);
+    event WithdrawalMade(address indexed accountAddress, uint256 amount);
     event FallbackCalled(address indexed accountAddress);
 
     Wallet wallet;
@@ -25,7 +25,7 @@ contract WalletTest is Test {
 
         vm.expectEmit(true, false, false, true);
         emit DepositMade(user, depositAmount);
-        
+
         vm.prank(user);
         wallet.deposit{value: depositAmount}();
 
@@ -43,7 +43,6 @@ contract WalletTest is Test {
         assertTrue(success, "Receive function failed!");
 
         assertEq(wallet.contractBalance(), depositAmount);
-
     }
 
     /*----------Withdraw function----------*/

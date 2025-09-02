@@ -6,6 +6,7 @@ import {AccessControl} from "../src/AccessControl.sol";
 
 contract AccessControlTest is Test {
     event RoleAssigned(address indexed account, string role);
+
     AccessControl accessControl;
 
     address owner = vm.addr(0x1);
@@ -80,5 +81,4 @@ contract AccessControlTest is Test {
         vm.expectRevert(bytes("You are not an admin and cannot call this function!"));
         accessControl.assignOtherRole(member, "Member");
     }
-
 }

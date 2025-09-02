@@ -13,7 +13,7 @@ contract HelloWorld {
 
     // Read funktion.
     // Endast i demo syfte. Eftersom state variabeln message är public kan vi redan läsa av värdet utan att skriva en egen funktion.
-    function getMessage() public view returns(string memory) {
+    function getMessage() public view returns (string memory) {
         return message;
     }
 }
