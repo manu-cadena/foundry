@@ -2,12 +2,12 @@
 pragma solidity 0.8.28;
 
 contract Wallet {
-    uint public contractBalance;
-    mapping(address => uint) internal _balances;
+    uint256 public contractBalance;
+    mapping(address => uint256) internal _balances;
     bool private _locked; 
 
-    event DepositMade(address indexed accountAddress, uint amount);
-    event WithdrawalMade(address indexed accountAddress, uint amount);
+    event DepositMade(address indexed accountAddress, uint256 amount);
+    event WithdrawalMade(address indexed accountAddress, uint256 amount);
     event FallbackCalled(address indexed accountAddress);
 
     modifier noReentrancy() {
@@ -17,7 +17,7 @@ contract Wallet {
         _locked = false;
     }
 
-    modifier hasSufficientBalance(uint withdrawalAmount) {
+    modifier hasSufficientBalance(uint256 withdrawalAmount) {
         require(_balances[msg.sender] >= withdrawalAmount, "You have an insufficient balance");
         _;
     }
@@ -40,7 +40,7 @@ contract Wallet {
         emit DepositMade(msg.sender, msg.value);
     }
 
-    function withdrawal(uint withdrawalAmount) public noReentrancy hasSufficientBalance(withdrawalAmount){
+    function withdrawal(uint256 withdrawalAmount) public noReentrancy hasSufficientBalance(withdrawalAmount){
         if(withdrawalAmount > 1 ether) {
             revert("You cannot withdraw more than 1 ETH per transaction");
         }
